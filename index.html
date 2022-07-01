@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pregunta 4</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    body{
+        background: url('https://media.istockphoto.com/vectors/vector-abstract-geometric-background-template-brochure-design-vector-id1042558982?k=20&m=1042558982&s=612x612&w=0&h=Y_PoZEgwnPVvYDm_-xZCtOFveQgPETsLGLRhRPse6Vc=');
+    }
+</style>
+
+<body>
+    <center>
+    <h1>Pregunta 4</h1>
+    </center>
+    <div class="container">
+        <button type="button" class="btn btn-primary" id="boton" onclick="loadDoc()">Da click</button>
+    </div>
+    <br><br>
+<table id="demo"></table>
+
+<script>
+function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        myFunction(this);
+    }
+};
+xhttp.open("GET", "data.xml", true);
+xhttp.send();
+}
+function myFunction(xml) {
+    var i;
+    var xmlDoc = xml.responseXML;
+    var table="<tr><th>Id</th><th>Nombre</th><th>Apellido</th><th>Correo</th></tr>";
+    var x = xmlDoc.getElementsByTagName("CD");
+    for (i = 0; i <x.length; i++) { 
+        table += "<tr><td>" +
+        x[i].getElementsByTagName("Id")[0].childNodes[0].nodeValue +
+        "</td><td>" +
+        x[i].getElementsByTagName("Nombre")[0].childNodes[0].nodeValue +
+        "</td></tr>" +
+        x[i].getElementsByTagName("Apellido")[0].childNodes[0].nodeValue +
+        "</td></tr>" +
+        x[i].getElementsByTagName("Correo")[0].childNodes[0].nodeValue +
+        "</td></tr>";
+    }
+    document.getElementById("demo").innerHTML = table;
+}
+</script>
+</body>
+
+</html>
+
